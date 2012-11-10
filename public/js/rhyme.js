@@ -5,18 +5,27 @@ jQuery.extend(jQuery.expr[':'], {
   focus: "a == document.activeElement"
 });
 
-var delimiters = " ,.!?&$";
+/* Constants */
+var delimiters = new RegExp("[ ,.]");
 var modifiers = [ 9, 13, 16, 17, 18 ];
+var minimum_score = 254;
+
+/* Globals */
 var rhymes_cache = [];
 var last_line_num = -1;
+var rhyme_scheme = "AABB";
 
 function words_from_line(line)
 {
   var words = line.split(delimiters);
+  var output = [];
   for (var i = 0; i < words.length; i++) {
-    words[i] = words[i].toLowerCase().replace(/[^a-z]/g,"");
+    var word = words[i].toLowerCase().replace(/[^a-z]/g,"");
+    if (word.length > 0) {
+      output.push(word);
+    }
   }
-  return words;
+  return output;
 }
 
 function getRhymes(word, callback, callback_arg1) {
@@ -24,7 +33,6 @@ function getRhymes(word, callback, callback_arg1) {
     return;
   }
   console.log("CALLING RHYMEBRAIN");
-  console.log("getRhymes("+word+",["+rhymes_cache+"])");
   var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=50&word=";
 
   $.ajax({
@@ -35,10 +43,23 @@ function getRhymes(word, callback, callback_arg1) {
     success: function(response){
       var rhymes = [word]; /* Include the word in the suggestion list. */
       var j = response.length;
-      for (var i = 0;  i < j; i++) {
-        if(response[i].score > 268){
-          rhymes.push(response[i].word); /* word, syllables, score, freq flags */
+      response.sort(function(a,b){return b.score-a.score;});
+      var firstbad = true;
+      var total = 15;
+
+      rhymes.push("#Matches");
+
+      for (var i = 0;  i < j && i < total; i++) {
+        if (response[i].word.length < 2) {
+          total++;
+          continue;
         }
+
+        if (response[i].score < minimum_score && firstbad) {
+          firstbad = false;
+          rhymes.push("#Near Matches");
+        }
+        rhymes.push(response[i].word); /* word, syllables, score, freq flags */
       }
       callback = callback || function(rhymewords){console.log(rhymewords);};
       callback(rhymes, callback_arg1);
@@ -184,11 +205,21 @@ function get_line(pos, text)
   return count;
 }
 
+// Respond to changes in the  Rhyme Scheme
+$("#scheme").change(function(event)
+{
+  var raw_scheme = $("#scheme").val();
+  rhyme_scheme = raw_scheme.toUpperCase().replace(/[^A-Z]/g,"");
+  if (raw_scheme !== rhyme_scheme) {
+    $("#scheme").val(rhyme_scheme);
+  }
+});
+
 // Respond to changes in the textarea
 $(window).keyup(function(event)
 {
   // Ignore events triggered when the textarea doesn't have focus, and from modifiers.
-  if (!jQuery("textarea.poetry-text").is(":focus") || 
+  if (!jQuery("textarea.poetry-text").is(":focus") ||
       modifiers.indexOf(event.keyCode) >= 0) {
     return;
   }
@@ -207,7 +238,7 @@ $(window).keyup(function(event)
   }
   $('div.syllable_counts').html(syllable_area);
   // After finding the syllable count, find all matching words
-  var pattern = "ABABCCDD";
+  var pattern = rhyme_scheme;
   var caret_pos = jQuery("textarea.poetry-text")[0].selectionStart;
   var line_num = get_line(caret_pos, text);
   if (line_num === last_line_num) {
@@ -240,7 +271,7 @@ function get_word_to_rhyme(line_num, pattern, lines)
     return undefined;
   }
   var words = words_from_line(lines[match]);
-  return words[words.length - 1]; 
+  return words[words.length - 1];
 }
 
 function populate_rhymes(word, lines)
@@ -287,7 +318,14 @@ function populate_rhyme_list(rhymes, lines, already_cached)
       rhymes = remove_used_words(rhymes, lines);
     }
     for (var i = 0; i < rhymes.length; i++) {
-      rhymes_div += rhymes[i] + "<br />";
+      var start_tag = "";
+      var end_tag = "<br />";
+      if (rhymes[i].indexOf("#") === 0) {
+        start_tag+="<div class='rhymethreshold'>";
+        end_tag="</div>";
+        rhymes[i] = rhymes[i].substr(1);
+      }
+      rhymes_div += start_tag + rhymes[i] + end_tag;
     }
   }
   $('div.sidebar').html(rhymes_div);
