@@ -55,6 +55,7 @@
     </div> -->
     <div class="topBar"></div>
     <div class="bottomBar"></div>
+    
     <?= $template['body'] ?>
 
     <!-- Source JS files -->
