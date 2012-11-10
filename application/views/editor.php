@@ -23,8 +23,8 @@
           no more need you fear."></textarea>
       </div>
     </div>
-    <div class="four columns">
-      <p>Rhyme Helper</p>
+    <div class="four columns sidebar">
+      <h2>&nbsp;Rhyme Helper&nbsp;&nbsp;</h2>
     </div>
   </div>
 </div>

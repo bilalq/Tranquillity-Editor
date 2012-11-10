@@ -26,7 +26,6 @@ function getRhymes(word, callback) {
     }
   });
 }
-getRhymes("hello");
 
 function getLineCount() {
   var numlines = 0;
