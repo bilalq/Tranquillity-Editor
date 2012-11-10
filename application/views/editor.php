@@ -1,5 +1,8 @@
 <div class="section group">
   <div class="col span_1_of_12">
+    <div class="quillImg">
+      <img src="public/img/quill.png"/>
+    </div>
   </div>
   <div class="col span_7_of_12">
     <form>
