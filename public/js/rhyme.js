@@ -200,11 +200,11 @@ $(window).keyup(function(event)
   var word = get_word_to_rhyme(line_num, pattern, lines);
   console.log("Calling populate_rhymes for "+word);
   populate_rhymes(word, lines);
-  //if ($('#syllable_count span').length <= line) 
+  //if ($('#syllable_count span').length <= line)
   //$('#syllable_count span')[line].innerText = getSyllableCount(text)
 });
 
-function get_word_to_rhyme(line_num, pattern, lines) 
+function get_word_to_rhyme(line_num, pattern, lines)
 {
   if (line_num < 1) {
     return undefined;
@@ -215,7 +215,7 @@ function get_word_to_rhyme(line_num, pattern, lines)
     if (lines[i].length < 1) {
       associations.push(undefined);
       continue;
-    } 
+    }
     associations.push(pattern[pattern_iter % pattern.length ]);
     pattern_iter++;
   }
@@ -285,6 +285,23 @@ function remove_used_words(rhymes, lines)
 }
 
 $('.linked').scroll(function(){
-    $('.linked').scrollTop($(this).scrollTop());    
-})
+    $('.linked').scrollTop($(this).scrollTop());
+});
 
+
+
+var poem = $('.poetry-text')[0];
+function get_sentiment(){
+  var text = poem.value;
+  console.log("POEM: " + text);
+  $.ajax({
+    type: 'GET',
+    data: {poem: text},
+    url: 'home/sentiment/'+text,
+    success: function(response) {
+      console.log(response);
+    }
+  });
+}
+get_sentiment();
+debugger;
