@@ -6,6 +6,7 @@
 .group:after {
     clear: both;
 }
+
 .group {
     zoom: 1; /* For IE 6/7 (trigger hasLayout) */
 }
@@ -13,6 +14,10 @@
 body {
   font-family: 'Open Sans', sans-serif;
   padding: 50px;
+}
+
+.title-row {
+  height: 70px;
 }
 
 input#title {
@@ -34,12 +39,19 @@ h1 {
 }
 
 textarea.poetry-text {
-  width: 100%;
+  width: 97%;
+  padding-left: 3%;
+  padding-top: 10px;
   height: 600px;
   resize: none;
   border:none;
   font-size: 18px;
   line-height: 1.5em;
+}
+
+input#title {
+  width: 97%;
+  padding-left: 3%;
 }
 
 div.topBar {
