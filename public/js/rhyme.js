@@ -5,7 +5,9 @@ jQuery.extend(jQuery.expr[':'], {
   focus: "a == document.activeElement"
 });
 
-function getRhymes(word, callback) {
+var rhymes_cache = [];
+
+function getRhymes(word, callback, callback_arg1) {
   var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=50&word=";
 
   $.ajax({
@@ -22,7 +24,7 @@ function getRhymes(word, callback) {
         }
       }
       callback = callback || function(rhymewords){console.log(rhymewords);};
-      callback(rhymes);
+      callback(rhymes, callback_arg1);
     }
   });
 }
@@ -192,12 +194,13 @@ $(window).keyup(function(event)
     syllable_area += syllable_count+"<br />";
   }
   $('div.syllable_counts').html(syllable_area);
-  // After fining the syllable count, find all matching words
+  // After finding the syllable count, find all matching words
   var pattern = "ABABCCDD";
   var caret_pos = jQuery("textarea.poetry-text")[0].selectionStart;
   var line_num = get_line(caret_pos, text);
   var word = get_word_to_rhyme(line_num, pattern, lines);
-  console.log(word);
+  console.log("Calling populate_rhymes for "+word);
+  populate_rhymes(word, lines);
   //if ($('#syllable_count span').length <= line) 
   //$('#syllable_count span')[line].innerText = getSyllableCount(text)
 });
@@ -207,17 +210,78 @@ function get_word_to_rhyme(line_num, pattern, lines)
   if (line_num < 1) {
     return undefined;
   }
-  var modulus = line_num % pattern.length;
-  console.log("modulus:"+modulus);
-  var ident = pattern[modulus];
-  console.log("ident:"+ident);
-  var match = pattern.lastIndexOf(ident, modulus-1);
-  console.log("match:"+match);
-  if (match < 0){
+  var associations = [];
+  var pattern_iter = 0;
+  for (var i = 0; i <= line_num; i++) {
+    if (lines[i].length < 1) {
+      associations.push(undefined);
+      continue;
+    } 
+    associations.push(pattern[pattern_iter % pattern.length ]);
+    pattern_iter++;
+  }
+
+  var ident = associations[line_num];
+  var match = associations.lastIndexOf(ident, line_num-1);
+  if (match < 0) {
     return undefined;
   }
-  var words = lines[line_num - (modulus - match)].split(" ");
-  console.log("words:"+words);
-  return words[words.length-1];
+  var words = lines[match].split(" ");
+  return words[words.length - 1]; // Return the last word from the selected line
+}
+
+function populate_rhymes(word, lines)
+{
+  var rhymes = get_cached_rhymes(word);
+  if (rhymes !== undefined) {
+    populate_rhyme_list(remove_used_words(rhymes, lines));
+    return;
+  }
+
+  getRhymes(word, populate_rhyme_list, lines);
+}
+
+function get_cached_rhymes(word)
+{
+  for (var i = 0; i < rhymes_cache.length; i++) {
+    var current_list = rhymes_cache[i];
+    for (var j = 0; j < current_list.length; j++) {
+      if (word === current_list[j]) {
+        return current_list;
+      }
+    }
+  }
+  return undefined;
+}
+
+function populate_rhyme_list(rhymes, lines)
+{
+  rhymes = remove_used_words(rhymes, lines);
+  rhymes_cache.push(rhymes);
+  var rhymes_div = "";
+  for (var i = 0; i < rhymes.length; i++) {
+    rhymes_div += rhymes[i] + "<br />";
+  }
+  $('div.sidebar').html(rhymes_div);
+}
+
+function remove_used_words(rhymes, lines)
+{
+  var unique_rhymes = [];
+  for (var i = 0; i < rhymes.length; i++) {
+    var unique = true;
+    var rhyme = rhymes[i];
+    for (var j = 0; j < lines.length; j++) {
+      var words = lines[j].split(" ");
+      if (words.indexOf(rhyme) >= 0) {
+        unique = false;
+        break;
+      }
+    }
+    if (unique) {
+      unique_rhymes.push(rhyme);
+    }
+  }
+  return unique_rhymes;
 }
 
