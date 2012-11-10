@@ -6,7 +6,14 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <!-- Responsive and mobile friendly stuff -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Poetry IDE</title>
+
+    <!-- Grid System & Reset -->
     <link rel="stylesheet" href="public/css/html5reset.css" media="all">
     <link rel="stylesheet" href="public/css/col.css" media="all">
     <link rel="stylesheet" href="public/css/2cols.css" media="all">
@@ -34,15 +41,15 @@
 
     <!-- IE Fix for HTML5 Tags -->
     <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
-  <h1>Poetry IDE</h1>
+    <h1>Poetry IDE</h1>
     <?= $template['body'] ?>
 
-   <script src="public/js/jquery-1.7.2.min.js"></script>
-     
+    <!-- Source JS files -->
+    <script src="public/js/jquery-1.7.2.min.js"></script>
     <script src="public/js/rhyme.js"></script>
   </body>
 </html>
