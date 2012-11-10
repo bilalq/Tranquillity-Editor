@@ -185,7 +185,7 @@ $(window).keyup(function(event)
 {
   // Ignore events triggered when the textarea doesn't have focus, and from modifiers.
   if (!jQuery("textarea.poetry-text").is(":focus") 
-      || modifiers.indexOf(event.keyCode) >= 0)
+      || modifiers.indexOf(event.keyCode) >= 0) {
     return;
   }
   var text = jQuery("textarea.poetry-text").val();
