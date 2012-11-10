@@ -43,17 +43,21 @@ function getRhymes(word, callback, callback_arg1) {
     success: function(response){
       var rhymes = [word]; /* Include the word in the suggestion list. */
       var j = response.length;
-      response.sort(function(a,b){return b.score-a.score})
+      response.sort(function(a,b){return b.score-a.score;});
       var firstbad = true;
       var total = 15;
+
+      rhymes.push("#Matches");
+
       for (var i = 0;  i < j && i < total; i++) {
         if (response[i].word.length < 2) {
           total++;
           continue;
         }
+
         if (response[i].score < minimum_score && firstbad) {
           firstbad = false;
-          rhymes.push("#No more strong matches. Try these near matches:")
+          rhymes.push("#Near Matches");
         }
         rhymes.push(response[i].word); /* word, syllables, score, freq flags */
       }
@@ -215,7 +219,7 @@ $("#scheme").change(function(event)
 $(window).keyup(function(event)
 {
   // Ignore events triggered when the textarea doesn't have focus, and from modifiers.
-  if (!jQuery("textarea.poetry-text").is(":focus") || 
+  if (!jQuery("textarea.poetry-text").is(":focus") ||
       modifiers.indexOf(event.keyCode) >= 0) {
     return;
   }
@@ -267,7 +271,7 @@ function get_word_to_rhyme(line_num, pattern, lines)
     return undefined;
   }
   var words = words_from_line(lines[match]);
-  return words[words.length - 1]; 
+  return words[words.length - 1];
 }
 
 function populate_rhymes(word, lines)
@@ -317,8 +321,8 @@ function populate_rhyme_list(rhymes, lines, already_cached)
       var start_tag = "";
       var end_tag = "<br />";
       if (rhymes[i].indexOf("#") === 0) {
-        start_tag+="<span class='rhymethreshold'>";
-        end_tag="</span>"+end_tag;
+        start_tag+="<div class='rhymethreshold'>";
+        end_tag="</div>";
         rhymes[i] = rhymes[i].substr(1);
       }
       rhymes_div += start_tag + rhymes[i] + end_tag;
