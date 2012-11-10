@@ -285,3 +285,7 @@ function remove_used_words(rhymes, lines)
   return unique_rhymes;
 }
 
+$('.linked').scroll(function(){
+    $('.linked').scrollTop($(this).scrollTop());    
+})
+
