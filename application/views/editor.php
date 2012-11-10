@@ -1,4 +1,4 @@
-<div class="section group">
+<div class="section group title-row">
   <div class="col span_1_of_12">
     <div class="quillImg">
       <img src="public/img/quill.png"/>
