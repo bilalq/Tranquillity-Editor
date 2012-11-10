@@ -1,3 +1,10 @@
+// Global prototypes & extensions
+String.prototype.lines = function() { return this.split(/\r|\r\n|\n/); }
+String.prototype.lineCount = function() { return this.lines().length; }
+jQuery.extend(jQuery.expr[':'], {
+  focus: "a == document.activeElement"
+});
+
 function getRhymes(word) {
   var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=45&word=";
 
@@ -34,6 +41,9 @@ function getLineCount() {
 
 
 function getSyllableCount(word) {
+  if (word.length === 0)
+    return 0;
+
   var syllableCount = 0,
   prefixSuffixCount = 0,
   wordPartCount = 0;
@@ -139,3 +149,50 @@ function getSyllableCount(word) {
   
   return syllableCount || 1;
 }
+
+
+// Given a cursor position & the string value of the input text area, 
+// return the line number on which the cursor in the text area resides.
+function get_line(pos, text)
+{
+  var lines = text.lines();
+  var count = 0;
+  var i = 0;
+  while (i < pos) {
+    i+=lines[count].length+1;
+    if (i > pos)
+      break;
+    count++;
+  }
+  return count;
+}
+
+// Given a line number, the number of syllables, and the string value of the
+// syllable count div, return the updated text for the syllable count div.
+// *This should be replaced by whatever is needed by the line counts..
+
+$(window).keyup(function(event)
+{ 
+  if (!jQuery("textarea.poetry-text").is(":focus")) {
+    return;
+  }
+  var text = jQuery("textarea.poetry-text").val();
+  var syllable_area = "";
+  var lines = text.lines();
+  var iter;
+  for (iter = 0; iter < lines.length; iter++) {
+    var words = lines[iter].split(" ");
+    var word_iter;
+    var syllable_count = 0;
+    for (word_iter = 0; word_iter < words.length; word_iter++)
+      syllable_count+=getSyllableCount(words[word_iter]);
+    syllable_area += syllable_count+"<br />";
+  }
+  console.log(syllable_area);
+  $('div.syllable_counts').html(syllable_area);
+  // var caret = jQuery("textarea.poetry-text")[0].selectionStart;
+  // var line = get_line(caret, text);
+  //if ($('#syllable_count span').length <= line) 
+  //$('#syllable_count span')[line].innerText = getSyllableCount(text)
+});
+
