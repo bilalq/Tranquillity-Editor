@@ -5,8 +5,12 @@ jQuery.extend(jQuery.expr[':'], {
   focus: "a == document.activeElement"
 });
 
+/* Constants */
 var delimiters = new RegExp("[ ,.]");
 var modifiers = [ 9, 13, 16, 17, 18 ];
+var minimum_score = 254;
+
+/* Globals */
 var rhymes_cache = [];
 var last_line_num = -1;
 
@@ -40,10 +44,15 @@ function getRhymes(word, callback, callback_arg1) {
       var j = response.length;
       response.sort(function(a,b){return b.score-a.score})
       var firstbad = true;
-      for (var i = 0;  i < j && i < 10; i++) {
-        if (response[i].score < 268 && firstbad) {
+      var total = 15;
+      for (var i = 0;  i < j && i < total; i++) {
+        if (response[i].word.length < 2) {
+          total++;
+          continue;
+        }
+        if (response[i].score < minimum_score && firstbad) {
           firstbad = false;
-          rhymes.push("No more strong matches. Try these near matches:")
+          rhymes.push("#No more strong matches. Try these near matches:")
         }
         rhymes.push(response[i].word); /* word, syllables, score, freq flags */
       }
@@ -294,7 +303,14 @@ function populate_rhyme_list(rhymes, lines, already_cached)
       rhymes = remove_used_words(rhymes, lines);
     }
     for (var i = 0; i < rhymes.length; i++) {
-      rhymes_div += rhymes[i] + "<br />";
+      var start_tag = "";
+      var end_tag = "<br />";
+      if (rhymes[i].indexOf("#") === 0) {
+        start_tag+="<span class='rhymethreshold'>";
+        end_tag="</span>"+end_tag;
+        rhymes[i] = rhymes[i].substr(1);
+      }
+      rhymes_div += start_tag + rhymes[i] + end_tag;
     }
   }
   $('div.sidebar').html(rhymes_div);
