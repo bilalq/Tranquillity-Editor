@@ -192,9 +192,32 @@ $(window).keyup(function(event)
     syllable_area += syllable_count+"<br />";
   }
   $('div.syllable_counts').html(syllable_area);
-  // var caret = jQuery("textarea.poetry-text")[0].selectionStart;
-  // var line = get_line(caret, text);
-  //if ($('#syllable_count span').length <= line)
+  // After fining the syllable count, find all matching words
+  var pattern = "ABABCCDD";
+  var caret_pos = jQuery("textarea.poetry-text")[0].selectionStart;
+  var line_num = get_line(caret_pos, text);
+  var word = get_word_to_rhyme(line_num, pattern, lines);
+  console.log(word);
+  //if ($('#syllable_count span').length <= line) 
   //$('#syllable_count span')[line].innerText = getSyllableCount(text)
 });
+
+function get_word_to_rhyme(line_num, pattern, lines) 
+{
+  if (line_num < 1) {
+    return undefined;
+  }
+  var modulus = line_num % pattern.length;
+  console.log("modulus:"+modulus);
+  var ident = pattern[modulus];
+  console.log("ident:"+ident);
+  var match = pattern.lastIndexOf(ident, modulus-1);
+  console.log("match:"+match);
+  if (match < 0){
+    return undefined;
+  }
+  var words = lines[line_num - (modulus - match)].split(" ");
+  console.log("words:"+words);
+  return words[words.length-1];
+}
 
