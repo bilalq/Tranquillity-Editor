@@ -208,12 +208,12 @@ function get_line(pos, text)
 // Respond to changes in the  Rhyme Scheme
 $("#scheme").change(function(event)
 {
-  var raw_scheme = this.val();
+  var raw_scheme = $("#scheme").val();
   rhyme_scheme = raw_scheme.toUpperCase().replace(/[^A-Z]/g,"");
   if (raw_scheme !== rhyme_scheme) {
     $("#scheme").val(rhyme_scheme);
   }
-}
+});
 
 // Respond to changes in the textarea
 $(window).keyup(function(event)
@@ -238,7 +238,7 @@ $(window).keyup(function(event)
   }
   $('div.syllable_counts').html(syllable_area);
   // After finding the syllable count, find all matching words
-  var pattern = "ABABCCDD";
+  var pattern = rhyme_scheme;
   var caret_pos = jQuery("textarea.poetry-text")[0].selectionStart;
   var line_num = get_line(caret_pos, text);
   if (line_num === last_line_num) {
