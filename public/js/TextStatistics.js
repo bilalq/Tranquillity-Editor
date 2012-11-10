@@ -3,7 +3,8 @@
 // 1:1 API Fork of TextStatistics.php by Dave Child (Thanks mate!)
 // https://github.com/DaveChild/Text-Statistics
 
-
+function pleaseWork(crap) {
+	var glob = crap;
 (function(glob) {
 	
 	function cleanText(text) {
@@ -235,3 +236,5 @@
 	
 	(typeof module != "undefined" && module.exports) ? (module.exports = textStatistics) : (typeof define != "undefined" ? (define("textstatistics", [], function() { return textStatistics; })) : (glob.textstatistics = textStatistics));
 })(this);
+
+}

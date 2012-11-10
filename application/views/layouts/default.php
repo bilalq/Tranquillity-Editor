@@ -60,5 +60,6 @@
     <!-- Source JS files -->
     <script src="public/js/jquery-1.7.2.min.js"></script>
     <script src="public/js/rhyme.js"></script>
+    <script src="public/js/TextStatistics.js"></script>
   </body>
 </html>
