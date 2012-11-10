@@ -201,12 +201,18 @@ $(window).keyup(function(event)
 
 function get_word_to_rhyme(line_num, pattern, lines) 
 {
+  if (line_num < 1)
+    return undefined;
   var modulus = line_num % pattern.length;
+  console.log("modulus:"+modulus);
   var ident = pattern[modulus];
+  console.log("ident:"+ident);
   var match = pattern.lastIndexOf(ident, modulus-1);
+  console.log("match:"+match);
   if (match < 0)
     return undefined;
   var words = lines[line_num - (modulus - match)].split(" ");
-  return words[words.length];
+  console.log("words:"+words);
+  return words[words.length-1];
 }
 
