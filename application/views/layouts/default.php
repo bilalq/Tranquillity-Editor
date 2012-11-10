@@ -41,7 +41,8 @@
   <h1>Poetry IDE</h1>
     <?= $template['body'] ?>
 
-    <script src="public/js/responsivegridsystem.js"></script>
+   <script src="public/js/jquery-1.7.2.min.js"></script>
+     
     <script src="public/js/rhyme.js"></script>
   </body>
 </html>
