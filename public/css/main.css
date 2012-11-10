@@ -1,0 +1,35 @@
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+} 
+.group:after {
+    clear: both;
+}
+.group {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+input#title {
+  font-size: 32px;
+  width: 100%;
+  border:1px none;
+}
+
+input#title:hover, input#title:focus {
+  border:1px solid;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+textarea {
+  width: 100%;
+  height: 600px;
+  resize: none;
+}

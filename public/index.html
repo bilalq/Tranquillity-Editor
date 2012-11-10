@@ -1,29 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>ACE in Action</title>
-<style type="text/css" media="screen">
-    #editor { 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-</style>
+<title>Poetry IDE</title>
+<link rel="stylesheet" href="css/html5reset.css" media="all">
+<link rel="stylesheet" href="css/col.css" media="all">
+<link rel="stylesheet" href="css/2cols.css" media="all">
+<link rel="stylesheet" href="css/3cols.css" media="all">
+<link rel="stylesheet" href="css/4cols.css" media="all">
+<link rel="stylesheet" href="css/5cols.css" media="all">
+<link rel="stylesheet" href="css/6cols.css" media="all">
+<link rel="stylesheet" href="css/7cols.css" media="all">
+<link rel="stylesheet" href="css/8cols.css" media="all">
+<link rel="stylesheet" href="css/9cols.css" media="all">
+<link rel="stylesheet" href="css/10cols.css" media="all">
+<link rel="stylesheet" href="css/11cols.css" media="all">
+<link rel="stylesheet" href="css/12cols.css" media="all">
+
+<link rel="stylesheet" href="css/main.css" media="all">
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
+<div class="section group">
+  <div class="col span_3_of_12">
+  </div>
+  <div class="col span_6_of_12">
+    <form>
+      <input type="text" name="title" id="title" value="Title">
+    </form>
+  </div>
+  <div class="col span_3_of_12">
+  </div>
+</div>
+<div class="section group">
+  <div class="col span_3_of_12">
+    <p>Left panel</p>
+  </div>
+  <div class="col span_6_of_12">
+    <textarea>Hello world</textarea>
+  </div>
+  <div class="col span_3_of_12">
+    <p>Right</p>
+  </div>
+</div>
 
-<div id="editor">function foo(items) {
-    var x = "All this is syntax highlighted";
-    return x;
-}</div>
-    
-<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
-</script>
+
+<script src="js/responsivegridsystem.js"></script>
 </body>
 </html>
