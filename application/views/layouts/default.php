@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-    <title>MuseHack</title>
+    <title>Tranquillity</title>
 
     <!-- Responsive and mobile friendly stuff -->
     <meta name="HandheldFriendly" content="True">
