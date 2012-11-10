@@ -33,3 +33,7 @@ textarea {
   height: 600px;
   resize: none;
 }
+
+/*body,input, textarea {*/
+  /*background: url("/public/img/creampaper.png");*/
+/*}*/
