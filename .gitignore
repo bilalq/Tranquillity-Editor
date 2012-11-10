@@ -1,0 +1,3 @@
+*/config/development
+*/cache/*
+*/cache/!index.html
