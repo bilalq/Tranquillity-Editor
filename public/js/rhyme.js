@@ -1,12 +1,12 @@
 // Global prototypes & extensions
-String.prototype.lines = function() { return this.split(/\r|\r\n|\n/); }
-String.prototype.lineCount = function() { return this.lines().length; }
+String.prototype.lines = function() { return this.split(/\r|\r\n|\n/); };
+String.prototype.lineCount = function() { return this.lines().length; };
 jQuery.extend(jQuery.expr[':'], {
   focus: "a == document.activeElement"
 });
 
-function getRhymes(word) {
-  var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=45&word=";
+function getRhymes(word, callback) {
+  var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=50&word=";
 
   $.ajax({
     type: 'GET',
@@ -14,19 +14,19 @@ function getRhymes(word) {
     jsonp: 'jsonp',
     url: (rhymeURL + word),
     success: function(response){
-      var rhymes = '';
+      var rhymes = [];
       var j = response.length;
-      for (var i = 0;  i < j && i < 12; i++) {
-        if(response[i].score > 260){
-          rhymes+='<a href="#" class="validWord">'+response[i].word+'</a>';
+      for (var i = 0;  i < j; i++) {
+        if(response[i].score > 268){
+          rhymes.push(response[i]);
         }
       }
-      console.log("rhyme: " + rhymes);
+      callback = callback || function(rhymewords){console.log(rhymewords);};
+      callback(rhymes);
     }
   });
-
 }
-
+getRhymes("hello");
 
 function getLineCount() {
   var numlines = 0;
@@ -41,13 +41,14 @@ function getLineCount() {
 
 
 function getSyllableCount(word) {
-  if (word.length === 0)
+  if (word.length === 0){
     return 0;
+  }
 
   var syllableCount = 0,
   prefixSuffixCount = 0,
   wordPartCount = 0;
-    
+
   // Prepare word - make lower case and remove non-word characters
   word = word.toLowerCase().replace(/[^a-z]/g,"");
 
@@ -58,12 +59,12 @@ function getSyllableCount(word) {
     "forever":    3,
     "shoreline":  2
   };
-  
+
   // Return if we've hit one of those...
   if (problemWords[word]) {
     return problemWords[word];
   }
-  
+
   // These syllables would be counted as two but should be one
   var subSyllables = [
     /cial/,
@@ -123,35 +124,35 @@ function getSyllableCount(word) {
       prefixSuffixCount ++;
     }
   });
-  
+
   wordPartCount = word
     .split(/[^aeiouy]+/ig)
     .filter(function(wordPart) {
       return !!wordPart.replace(/\s+/ig,"").length;
     })
     .length;
-  
+
   // Get preliminary syllable count...
   syllableCount = wordPartCount + prefixSuffixCount;
-  
+
   // Some syllables do not follow normal rules - check for them
   subSyllables.forEach(function(syllable) {
     if (word.match(syllable)) {
       syllableCount --;
     }
   });
-  
+
   addSyllables.forEach(function(syllable) {
     if (word.match(syllable)) {
       syllableCount ++;
     }
   });
-  
+
   return syllableCount || 1;
 }
 
 
-// Given a cursor position & the string value of the input text area, 
+// Given a cursor position & the string value of the input text area,
 // return the line number on which the cursor in the text area resides.
 function get_line(pos, text)
 {
@@ -160,8 +161,9 @@ function get_line(pos, text)
   var i = 0;
   while (i < pos) {
     i+=lines[count].length+1;
-    if (i > pos)
+    if (i > pos){
       break;
+    }
     count++;
   }
   return count;
@@ -172,7 +174,7 @@ function get_line(pos, text)
 // *This should be replaced by whatever is needed by the line counts..
 
 $(window).keyup(function(event)
-{ 
+{
   if (!jQuery("textarea.poetry-text").is(":focus")) {
     return;
   }
@@ -184,14 +186,15 @@ $(window).keyup(function(event)
     var words = lines[iter].split(" ");
     var word_iter;
     var syllable_count = 0;
-    for (word_iter = 0; word_iter < words.length; word_iter++)
+    for (word_iter = 0; word_iter < words.length; word_iter++){
       syllable_count+=getSyllableCount(words[word_iter]);
+    }
     syllable_area += syllable_count+"<br />";
   }
   $('div.syllable_counts').html(syllable_area);
   // var caret = jQuery("textarea.poetry-text")[0].selectionStart;
   // var line = get_line(caret, text);
-  //if ($('#syllable_count span').length <= line) 
+  //if ($('#syllable_count span').length <= line)
   //$('#syllable_count span')[line].innerText = getSyllableCount(text)
 });
 
