@@ -188,7 +188,6 @@ $(window).keyup(function(event)
       syllable_count+=getSyllableCount(words[word_iter]);
     syllable_area += syllable_count+"<br />";
   }
-  console.log(syllable_area);
   $('div.syllable_counts').html(syllable_area);
   // var caret = jQuery("textarea.poetry-text")[0].selectionStart;
   // var line = get_line(caret, text);
