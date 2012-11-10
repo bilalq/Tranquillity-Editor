@@ -1,5 +1,7 @@
 */config/development
 */cache/*
 */cache/!index.html
+.sass-cache
 
 .DS_Store
+Thumbs.db
