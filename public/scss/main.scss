@@ -122,11 +122,21 @@ body,input, textarea {
   background: url("/public/img/creampaper.png");
 }
 
-.sidebar {
-  box-shadow: 2px 2px 10px 4px rgba(220, 220, 220, 0.4);
-  /*background: rgba(160, 160, 160, 0.05);*/
-  border: 1px solid rgba(160, 160, 160, 0.05);
-  height: 600px;
+.side {
+  > p {
+    font-family: 'Alex Brush', cursive;
+    font-size: 28px;
+    font-weight: 200;
+    color: rgba(100, 100, 100, 0.89);
+    border-bottom: 1px solid rgba(160, 160, 160, 0.55);
+  }
+  box-shadow: 2px 2px 10px 4px rgba(220, 220, 220, 0.8);
+  border: 1px solid rgba(160, 160, 160, 0.15);
+  min-height: 600px;
+
+  .sidebar {
+    line-height: 1.55em;
+  }
 }
 
 h2 {
