@@ -1,5 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Poetry IDE</title>
@@ -26,13 +30,18 @@
     <link rel="stylesheet" href="public/css/main.css" media="all">
 
     <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements and feature detects -->
-    <script src="/js/modernizr-2.5.3-min.js"></script>
+    <script src="public/js/modernizr-2.5.3-min.js"></script>
 
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
   <h1>Poetry IDE</h1>
     <?= $template['body'] ?>
 
-    <script src="js/responsivegridsystem.js"></script>
+    <script src="public/js/responsivegridsystem.js"></script>
+    <script src="public/js/rhyme.js"></script>
   </body>
 </html>
