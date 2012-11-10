@@ -188,8 +188,8 @@ function get_line(pos, text)
 $(window).keyup(function(event)
 {
   // Ignore events triggered when the textarea doesn't have focus, and from modifiers.
-  if (!jQuery("textarea.poetry-text").is(":focus") 
-      || modifiers.indexOf(event.keyCode) >= 0) {
+  if (!jQuery("textarea.poetry-text").is(":focus") || 
+      modifiers.indexOf(event.keyCode) >= 0) {
     return;
   }
   var text = jQuery("textarea.poetry-text").val();
@@ -218,7 +218,7 @@ $(window).keyup(function(event)
   populate_rhymes(word, lines);
 });
 
-function get_word_to_rhyme(line_num, pattern, lines) 
+function get_word_to_rhyme(line_num, pattern, lines)
 {
   if (line_num < 1) {
     return undefined;
@@ -229,7 +229,7 @@ function get_word_to_rhyme(line_num, pattern, lines)
     if (lines[i].length < 1) {
       associations.push(undefined);
       continue;
-    } 
+    }
     associations.push(pattern[pattern_iter % pattern.length ]);
     pattern_iter++;
   }
@@ -314,6 +314,22 @@ function remove_used_words(rhymes, lines)
 }
 
 $('.linked').scroll(function(){
-    $('.linked').scrollTop($(this).scrollTop());    
-})
+    $('.linked').scrollTop($(this).scrollTop());
+});
 
+
+
+//var poem = $('.poetry-text')[0];
+//function get_sentiment(){
+  //var text = poem.value;
+  //console.log("POEM: " + text);
+  //$.ajax({
+    //type: 'GET',
+    //data: {poem: text},
+    //url: 'home/sentiment/'+text,
+    //success: function(response) {
+      //console.log(response);
+    //}
+  //});
+//}
+//get_sentiment();

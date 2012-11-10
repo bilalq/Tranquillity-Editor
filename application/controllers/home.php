@@ -4,4 +4,9 @@ class Home extends MY_Controller {
   public function index() {
     $this->template->build("editor");
   }
+
+  public function sentiment(){
+
+    $text = $this->input->get('poem');
+  }
 }
