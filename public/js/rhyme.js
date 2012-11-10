@@ -5,8 +5,8 @@ jQuery.extend(jQuery.expr[':'], {
   focus: "a == document.activeElement"
 });
 
-const delimiters = " ,.!?&$";
-const modifiers = [ 9, 13, 16, 17, 18 ];
+var delimiters = " ,.!?&$";
+var modifiers = [ 9, 13, 16, 17, 18 ];
 var rhymes_cache = [];
 var last_line_num = -1;
 
@@ -20,7 +20,11 @@ function words_from_line(line)
 }
 
 function getRhymes(word, callback, callback_arg1) {
+  if (word === undefined || word.length < 1) {
+    return;
+  }
   console.log("CALLING RHYMEBRAIN");
+  console.log("getRhymes("+word+",["+rhymes_cache+"])");
   var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=50&word=";
 
   $.ajax({
