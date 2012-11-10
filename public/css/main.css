@@ -56,6 +56,6 @@ div.bottomBar {
   background-color: #000;
 }
 
-/*body,input, textarea {*/
-  /*background: url("/public/img/creampaper.png");*/
-/*}*/
+body,input, textarea {
+  background: url("/public/img/creampaper.png");
+}
