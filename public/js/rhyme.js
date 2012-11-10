@@ -5,9 +5,22 @@ jQuery.extend(jQuery.expr[':'], {
   focus: "a == document.activeElement"
 });
 
+var delimiters = " ,.!?&$";
+var modifiers = [ 9, 13, 16, 17, 18 ];
 var rhymes_cache = [];
+var last_line_num = -1;
+
+function words_from_line(line)
+{
+  var words = line.split(delimiters);
+  for (var i = 0; i < words.length; i++) {
+    words[i] = words[i].toLowerCase().replace(/[^a-z]/g,"");
+  }
+  return words;
+}
 
 function getRhymes(word, callback, callback_arg1) {
+  console.log("CALLING RHYMEBRAIN");
   var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=50&word=";
 
   $.ajax({
@@ -16,11 +29,11 @@ function getRhymes(word, callback, callback_arg1) {
     jsonp: 'jsonp',
     url: (rhymeURL + word),
     success: function(response){
-      var rhymes = [];
+      var rhymes = [word]; /* Include the word in the suggestion list. */
       var j = response.length;
       for (var i = 0;  i < j; i++) {
         if(response[i].score > 268){
-          rhymes.push(response[i]);
+          rhymes.push(response[i].word); /* word, syllables, score, freq flags */
         }
       }
       callback = callback || function(rhymewords){console.log(rhymewords);};
@@ -31,15 +44,12 @@ function getRhymes(word, callback, callback_arg1) {
 
 function getLineCount() {
   var numlines = 0;
-  var text = $('.poetry-text').val().split('\n');
+  var text = $('.poetry-text').val().lines();
 
   $.each(text, function(){
     alert(getSyllableCount(this));
   });
-
-
 }
-
 
 function getSyllableCount(word) {
   if (word.length === 0){
@@ -170,13 +180,12 @@ function get_line(pos, text)
   return count;
 }
 
-// Given a line number, the number of syllables, and the string value of the
-// syllable count div, return the updated text for the syllable count div.
-// *This should be replaced by whatever is needed by the line counts..
-
+// Respond to changes in the textarea
 $(window).keyup(function(event)
 {
-  if (!jQuery("textarea.poetry-text").is(":focus")) {
+  // Ignore events triggered when the textarea doesn't have focus, and from modifiers.
+  if (!jQuery("textarea.poetry-text").is(":focus") || 
+      modifiers.indexOf(event.keyCode) >= 0) {
     return;
   }
   var text = jQuery("textarea.poetry-text").val();
@@ -184,7 +193,7 @@ $(window).keyup(function(event)
   var lines = text.lines();
   var iter;
   for (iter = 0; iter < lines.length; iter++) {
-    var words = lines[iter].split(" ");
+    var words = words_from_line(lines[iter]);
     var word_iter;
     var syllable_count = 0;
     for (word_iter = 0; word_iter < words.length; word_iter++){
@@ -197,11 +206,12 @@ $(window).keyup(function(event)
   var pattern = "ABABCCDD";
   var caret_pos = jQuery("textarea.poetry-text")[0].selectionStart;
   var line_num = get_line(caret_pos, text);
+  if (line_num === last_line_num) {
+    return;
+  }
+  last_line_num = line_num;
   var word = get_word_to_rhyme(line_num, pattern, lines);
-  console.log("Calling populate_rhymes for "+word);
   populate_rhymes(word, lines);
-  //if ($('#syllable_count span').length <= line)
-  //$('#syllable_count span')[line].innerText = getSyllableCount(text)
 });
 
 function get_word_to_rhyme(line_num, pattern, lines)
@@ -225,15 +235,20 @@ function get_word_to_rhyme(line_num, pattern, lines)
   if (match < 0) {
     return undefined;
   }
-  var words = lines[match].split(" ");
-  return words[words.length - 1]; // Return the last word from the selected line
+  var words = words_from_line(lines[match]);
+  return words[words.length - 1]; 
 }
 
 function populate_rhymes(word, lines)
 {
+  if (word === undefined) {
+    populate_rhyme_list(undefined,undefined,true); // Clear list
+    return;
+  }
+
   var rhymes = get_cached_rhymes(word);
   if (rhymes !== undefined) {
-    populate_rhyme_list(remove_used_words(rhymes, lines));
+    populate_rhyme_list(remove_used_words(rhymes, lines),lines,true);
     return;
   }
 
@@ -253,13 +268,23 @@ function get_cached_rhymes(word)
   return undefined;
 }
 
-function populate_rhyme_list(rhymes, lines)
+function populate_rhyme_list(rhymes, lines, already_cached)
 {
-  rhymes = remove_used_words(rhymes, lines);
-  rhymes_cache.push(rhymes);
+  /* Javascript version of default args */
+  var cached = false;
+  if (typeof(already_cached) !== undefined && already_cached === true) {
+    cached = true;
+  }
+
   var rhymes_div = "";
-  for (var i = 0; i < rhymes.length; i++) {
-    rhymes_div += rhymes[i] + "<br />";
+  if (rhymes !== undefined && rhymes.length > 0) {
+    if (!cached) {
+      rhymes_cache.push(rhymes);
+      rhymes = remove_used_words(rhymes, lines);
+    }
+    for (var i = 0; i < rhymes.length; i++) {
+      rhymes_div += rhymes[i] + "<br />";
+    }
   }
   $('div.sidebar').html(rhymes_div);
 }
@@ -271,7 +296,7 @@ function remove_used_words(rhymes, lines)
     var unique = true;
     var rhyme = rhymes[i];
     for (var j = 0; j < lines.length; j++) {
-      var words = lines[j].split(" ");
+      var words = words_from_line(lines[j]);
       if (words.indexOf(rhyme) >= 0) {
         unique = false;
         break;
@@ -290,18 +315,17 @@ $('.linked').scroll(function(){
 
 
 
-var poem = $('.poetry-text')[0];
-function get_sentiment(){
-  var text = poem.value;
-  console.log("POEM: " + text);
-  $.ajax({
-    type: 'GET',
-    data: {poem: text},
-    url: 'home/sentiment/'+text,
-    success: function(response) {
-      console.log(response);
-    }
-  });
-}
-get_sentiment();
-debugger;
+//var poem = $('.poetry-text')[0];
+//function get_sentiment(){
+  //var text = poem.value;
+  //console.log("POEM: " + text);
+  //$.ajax({
+    //type: 'GET',
+    //data: {poem: text},
+    //url: 'home/sentiment/'+text,
+    //success: function(response) {
+      //console.log(response);
+    //}
+  //});
+//}
+//get_sentiment();

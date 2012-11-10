@@ -13,7 +13,7 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  padding: 50px;
+  padding-top: 50px;
 }
 
 .title-row {
@@ -54,6 +54,7 @@ textarea.poetry-text {
   border:none;
   font-size: 18px;
   line-height: 1.5em;
+  margin-bottom: 15px;
 }
 
 .syllable_counts {
@@ -68,7 +69,7 @@ textarea.poetry-text {
 }
 
 div.topBar {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   width: 100%;
@@ -100,6 +101,23 @@ div.bottomBar {
   float: left;
 }
 
+#nav {
+
+  margin-top: 47px;
+  float: right;
+
+  ul {
+    font-size: 14px;
+    font-color: #393939;
+    list-style-type: none;
+
+    li {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+}
+
 body,input, textarea {
   background: url("/public/img/creampaper.png");
 }
@@ -109,12 +127,36 @@ body,input, textarea {
   /*background: rgba(160, 160, 160, 0.05);*/
   border: 1px solid rgba(160, 160, 160, 0.05);
   height: 600px;
-  h2 {
-    font-family: 'Alex Brush', cursive;
-    font-weight: 200;
-    font-size: 28px;
-    color: rgba(77, 77, 77, 0.9);
-    text-decoration: underline;
-    margin-bottom: 15px;
-  }
+}
+
+h2 {
+  font-family: 'Alex Brush', cursive;
+  font-weight: 200;
+  font-size: 28px;
+  color: rgba(77, 77, 77, 0.9);
+  text-decoration: underline;
+  margin-bottom: 15px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -25px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.push {
+  height: 100px; /* .push must be the same height as .footer */
+}
+
+.footer {
+   background: url("/public/img/debut_dark.png");
+   background-color: #333;
+   margin: 0;
+   height: 25px;
 }
