@@ -5,7 +5,7 @@ jQuery.extend(jQuery.expr[':'], {
   focus: "a == document.activeElement"
 });
 
-var delimiters = " ,.!?&$";
+var delimiters = new RegExp("[ ,.]");
 var modifiers = [ 9, 13, 16, 17, 18 ];
 var rhymes_cache = [];
 var last_line_num = -1;
@@ -13,10 +13,14 @@ var last_line_num = -1;
 function words_from_line(line)
 {
   var words = line.split(delimiters);
+  var output = [];
   for (var i = 0; i < words.length; i++) {
-    words[i] = words[i].toLowerCase().replace(/[^a-z]/g,"");
+    var word = words[i].toLowerCase().replace(/[^a-z]/g,"");
+    if (word.length > 0) {
+      output.push(word);
+    }
   }
-  return words;
+  return output;
 }
 
 function getRhymes(word, callback, callback_arg1) {
@@ -24,7 +28,6 @@ function getRhymes(word, callback, callback_arg1) {
     return;
   }
   console.log("CALLING RHYMEBRAIN");
-  console.log("getRhymes("+word+",["+rhymes_cache+"])");
   var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=50&word=";
 
   $.ajax({
