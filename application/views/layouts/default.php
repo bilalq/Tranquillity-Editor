@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-    <title>MuseHack</title>
+    <title>Tranquillity</title>
 
     <!-- Responsive and mobile friendly stuff -->
     <meta name="HandheldFriendly" content="True">
@@ -34,7 +34,7 @@
     <!-- <div class="section group">
       <div class="col span_1_of_12"></div>
       <div class="col span_11_of_12">
-        <h1>MuseHack</h1>
+        <h1>Tranquillity</h1>
       </div>
     </div> -->
     <div class="topBar"></div>
