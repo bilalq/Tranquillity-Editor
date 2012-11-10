@@ -6,7 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Poetry IDE</title>
+    <title>MuseHack</title>
     <link rel="stylesheet" href="public/css/html5reset.css" media="all">
     <link rel="stylesheet" href="public/css/col.css" media="all">
     <link rel="stylesheet" href="public/css/2cols.css" media="all">
@@ -27,6 +27,7 @@
     <link rel="stylesheet" media="only screen and (max-width: 480px)" href="public/css/480.css">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Alex+Brush' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="public/css/main.css" media="all">
 
     <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements and feature detects -->
@@ -38,7 +39,15 @@
     <![endif]-->
   </head>
   <body>
-  <h1>Poetry IDE</h1>
+    
+    <!-- <div class="section group">
+      <div class="col span_1_of_12"></div>
+      <div class="col span_11_of_12">
+        <h1>MuseHack</h1>
+      </div>
+    </div> -->
+    <div class="topBar"></div>
+    <div class="bottomBar"></div>
     <?= $template['body'] ?>
 
     <script src="public/js/responsivegridsystem.js"></script>
