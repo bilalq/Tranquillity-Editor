@@ -38,10 +38,14 @@ function getRhymes(word, callback, callback_arg1) {
     success: function(response){
       var rhymes = [word]; /* Include the word in the suggestion list. */
       var j = response.length;
-      for (var i = 0;  i < j; i++) {
-        if(response[i].score > 268){
-          rhymes.push(response[i].word); /* word, syllables, score, freq flags */
+      response.sort(function(a,b){return b.score-a.score})
+      var firstbad = true;
+      for (var i = 0;  i < j && i < 10; i++) {
+        if (response[i].score < 268 && firstbad) {
+          firstbad = false;
+          rhymes.push("No more strong matches. Try these near matches:")
         }
+        rhymes.push(response[i].word); /* word, syllables, score, freq flags */
       }
       callback = callback || function(rhymewords){console.log(rhymewords);};
       callback(rhymes, callback_arg1);
