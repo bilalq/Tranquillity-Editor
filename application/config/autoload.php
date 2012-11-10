@@ -53,7 +53,9 @@ $autoload['packages'] = array();
 */
 
 $autoload['libraries'] = array(
-  'parser'
+  'parser',
+  'session',
+  'database'
 );
 
 
