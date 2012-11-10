@@ -39,8 +39,21 @@
     </div> -->
     <div class="topBar"></div>
     <div class="bottomBar"></div>
-    
-    <?= $template['body'] ?>
+    <div class="wrapper">
+      <div class="row">
+        <div class="eight columns">
+            <a href="/"><img src="public/img/tranquillity.png" id="logo" /></a>
+        </div>
+        <div class="four columns">
+            <div id="nav">
+                <ul>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </div>
+        </div>
+      </div>
+        <?= $template['body'] ?>
+    </div>
 
     <!-- Source JS files -->
     <script src="public/js/jquery-1.7.2.min.js"></script>

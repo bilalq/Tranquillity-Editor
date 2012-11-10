@@ -1,18 +1,3 @@
-<div class="wrapper">
-    <div class="row">
-      <div class="eight columns">
-          <img src="public/img/tranquillity.png" id="logo" />
-      </div>
-      <div class="four columns">
-          <div id="nav">
-              <ul>
-                  <li>Home</li>
-
-                  <li>About</li>
-              </ul>
-          </div>
-      </div>
-    </div>
     <div class="row">
       <div class="one columns">
       </div>
