@@ -13,6 +13,7 @@ var minimum_score = 254;
 /* Globals */
 var rhymes_cache = [];
 var last_line_num = -1;
+var rhyme_scheme = "AABB";
 
 function words_from_line(line)
 {
@@ -198,6 +199,16 @@ function get_line(pos, text)
     count++;
   }
   return count;
+}
+
+// Respond to changes in the  Rhyme Scheme
+$("#scheme").change(function(event)
+{
+  var raw_scheme = this.val();
+  rhyme_scheme = raw_scheme.toUpperCase().replace(/[^A-Z]/g,"");
+  if (raw_scheme !== rhyme_scheme) {
+    $("#scheme").val(rhyme_scheme);
+  }
 }
 
 // Respond to changes in the textarea
