@@ -19,3 +19,15 @@ function getRhymes(word) {
   });
 
 }
+
+
+function getLineCount {
+  var numlines = 0;
+  var text = $('textarea').value.split('\n');
+
+  $.each(text, function(){
+    alert(this);
+  });
+
+
+}

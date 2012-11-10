@@ -6,7 +6,15 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
     <title>MuseHack</title>
+
+    <!-- Responsive and mobile friendly stuff -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Grid System & Reset -->
     <link rel="stylesheet" href="public/css/html5reset.css" media="all">
     <link rel="stylesheet" href="public/css/col.css" media="all">
     <link rel="stylesheet" href="public/css/2cols.css" media="all">
@@ -35,11 +43,10 @@
 
     <!-- IE Fix for HTML5 Tags -->
     <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
-    
     <!-- <div class="section group">
       <div class="col span_1_of_12"></div>
       <div class="col span_11_of_12">
@@ -50,7 +57,8 @@
     <div class="bottomBar"></div>
     <?= $template['body'] ?>
 
-    <script src="public/js/responsivegridsystem.js"></script>
+    <!-- Source JS files -->
+    <script src="public/js/jquery-1.7.2.min.js"></script>
     <script src="public/js/rhyme.js"></script>
   </body>
 </html>
