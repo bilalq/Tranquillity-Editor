@@ -216,3 +216,7 @@ function get_word_to_rhyme(line_num, pattern, lines)
   return words[words.length-1];
 }
 
+$('.linked').scroll(function(){
+    $('.linked').scrollTop($(this).scrollTop());    
+})
+
