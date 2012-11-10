@@ -4,19 +4,28 @@ class Poem extends MY_Controller {
 
   function __construct()
   {
-      $this->load->model('Poem_model');
       parent::__construct();
+      $this->load->model('Poem_model');
   }
 
   public function index($poem_id) {
-    $query = $this->Poem_model->get_poem($poem_id);    
+    $response = $this->Poem_model->get_poem($poem_id);    
+    var_dump($response);
   }
 
   public function list_all() {
-    $query = $this->Poem_model->get_poems($poem_id);
-    foreach ($query->result() as $row)
-    {
-      echo $row->title;
+    $response = $this->Poem_model->get_poems($poem_id);
+  }
+
+  public function create() {
+    if ($this->input->post()) {
+      $success = $this->Poem_model->insert_poem();
+    }
+  }
+
+  public function update() {
+    if ($this->input->post()) {
+      $success = $this->Poem_model->update_poem();
     }
   }
 }

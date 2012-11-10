@@ -2,45 +2,46 @@
 
 class Poem_model extends CI_Model {
 
-    var $title   = '';
-    var $body = '';
-    var $scheme    = '';
+  var $title   = '';
+  var $body = '';
+  var $scheme    = '';
 
-    function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
-    
-    function get_poem($poem_id){
-      return $this->db->get_where('poem', array('id', $poem_id));
-    }
+  function __construct()
+  {
+    parent::__construct();
+  }
 
-    function get_poems($poem_id){
-      return $this->db->get('poem');
-    }
-    //function get_last_ten_entries()
-    //{
-        //$query = $this->db->get('entries', 10);
-        //return $query->result();
-    //}
+  function get_poem($poem_id){
+    return $this->db->select('*')
+      ->from('poem')
+      ->where('`id` =', '1', false)
+      ->get()
+      ->result();
+  }
 
-    //function insert_entry()
-    //{
-        //$this->title   = $_POST['title']; // please read the below note
-        //$this->content = $_POST['content'];
-        //$this->date    = time();
+  function get_poems($poem_id){
+    return $this->db->get('poem')->result();;
+  }
 
-        //$this->db->insert('entries', $this);
-    //}
+  function insert_poem()
+  {
+    $this->title   = $this->input->post('title');
+    $this->body = $this->input->post('body');
+    $this->scheme = $this->input->post('scheme');
 
-    //function update_entry()
-    //{
-        //$this->title   = $_POST['title'];
-        //$this->content = $_POST['content'];
-        //$this->date    = time();
+    $this->db->insert('poem', $this);
+  }
 
-        //$this->db->update('entries', $this, array('id' => $_POST['id']));
-    //}
+  function update_poem()
+  {
+    $title = $this->input->post('title');
+    $body = $this->input->post('body');
+    $scheme = $this->input->post('scheme');
+
+    $this->title  = isset($title) ? $title : $this->$title;
+    $this->body = isset($body) ? $body : $this->$body;
+    $this->scheme =  isset($scheme) ? $scheme : $this->$scheme;
+    $this->db->update('poem', $this, array('id' => $this->input->post('id')));
+  }
 
 }
