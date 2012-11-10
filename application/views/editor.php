@@ -9,7 +9,7 @@
       <input type="text" name="title" id="title" placeholder="Title" autocomplete="off"/>
     </form>
   </div>
-  <div class="col span_1_of_12"></div>
+  <div class="col span_1_of_12" style="height:100px"></div>
 </div>
 <div class="section group">
   <div class="col span_1_of_12 syllable_counts">

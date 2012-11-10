@@ -34,6 +34,10 @@ input#title:hover, input#title:focus, textarea:hover, textarea:focus {
   outline: none;
 }
 
+input#title:focus, textarea:focus {
+  cursor: text;
+}
+
 h1 {
   font-size: 32px;
 }
