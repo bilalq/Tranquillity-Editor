@@ -37,6 +37,8 @@
         </div>
         <div class="four columns">
           <p>Rhyme Helper</p>
+          <div class="sidebar">
+          </div>
         </div>
       </div>
     </div>
