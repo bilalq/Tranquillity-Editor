@@ -1,3 +1,5 @@
 */config/development
 */cache/*
 */cache/!index.html
+
+.DS_Store
