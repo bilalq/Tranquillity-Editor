@@ -4,7 +4,7 @@
       <img src="public/img/quill.png"/>
     </div>
   </div>
-  <div class="col span_10_of_12">
+  <div class="col span_10_of_12 poetry-title">
     <form>
       <input type="text" name="title" id="title" value="Title">
     </form>

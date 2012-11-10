@@ -34,12 +34,19 @@ h1 {
 }
 
 textarea.poetry-text {
-  width: 100%;
+  width: 97%;
+  padding-left: 3%;
+  padding-top: 10px;
   height: 600px;
   resize: none;
   border:none;
   font-size: 18px;
   line-height: 1.5em;
+}
+
+input#title {
+  width: 97%;
+  padding-left: 3%;
 }
 
 div.topBar {
