@@ -17,8 +17,7 @@
   <div class="col span_7_of_12">
     <div class="cushion">
       <textarea class="poetry-text" placeholder="Your poem goes here,                                                                                                                                                                                                       
-        no more need you fear.">
-      </textarea>
+        no more need you fear."></textarea>
     </div>
   </div>
   <div class="col span_3_of_12">
