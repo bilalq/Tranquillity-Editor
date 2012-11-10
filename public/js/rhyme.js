@@ -50,7 +50,9 @@ function getSyllableCount(word) {
   };
   
   // Return if we've hit one of those...
-  if (problemWords[word]) return problemWords[word];
+  if (problemWords[word]) {
+    return problemWords[word];
+  }
   
   // These syllables would be counted as two but should be one
   var subSyllables = [
@@ -115,7 +117,7 @@ function getSyllableCount(word) {
   wordPartCount = word
     .split(/[^aeiouy]+/ig)
     .filter(function(wordPart) {
-      return !!wordPart.replace(/\s+/ig,"").length
+      return !!wordPart.replace(/\s+/ig,"").length;
     })
     .length;
   
@@ -124,12 +126,16 @@ function getSyllableCount(word) {
   
   // Some syllables do not follow normal rules - check for them
   subSyllables.forEach(function(syllable) {
-    if (word.match(syllable)) syllableCount --;
+    if (word.match(syllable)) {
+      syllableCount --;
+    }
   });
   
   addSyllables.forEach(function(syllable) {
-    if (word.match(syllable)) syllableCount ++;
+    if (word.match(syllable)) {
+      syllableCount ++;
+    }
   });
   
   return syllableCount || 1;
-};
+}
