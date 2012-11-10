@@ -12,7 +12,7 @@
   <div class="col span_1_of_12"></div>
 </div>
 <div class="section group">
-  <div class="col span_1_of_12">
+  <div class="col span_1_of_12 syllable_counts">
   </div>
   <div class="col span_7_of_12">
     <div class="cushion">
