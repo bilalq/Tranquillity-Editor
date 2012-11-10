@@ -79,14 +79,14 @@ div.topBar {
 
 }
 
-div.bottomBar {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 5px;
-  background-color: #000;
-}
+/*div.bottomBar {*/
+  /*position: fixed;*/
+  /*left: 0;*/
+  /*bottom: 0;*/
+  /*width: 100%;*/
+  /*height: 5px;*/
+  /*background-color: #000;*/
+/*}*/
 
 /*div.quillImg {*/
   /*float: right;*/
@@ -123,19 +123,41 @@ body,input, textarea {
 }
 
 .side {
-  > p {
+  height: 540px;
+  box-shadow: 2px 2px 10px 4px rgba(220, 220, 220, 0.8);
+  border: 1px solid rgba(160, 160, 160, 0.15);
+
+  > .scheme_line {
+    margin-top: 15px;
     font-family: 'Alex Brush', cursive;
     font-size: 28px;
     font-weight: 200;
     color: rgba(100, 100, 100, 0.89);
     border-bottom: 1px solid rgba(160, 160, 160, 0.55);
+    > input {
+      padding: 5px;
+      margin-left: 35px;
+      outline: 0;
+      outline: none;
+      border: none;
+      color: rgba(100, 100, 100, 0.89);
+      background: rgba(200, 200, 200, 0.55);
+    }
+    > input:hover, > input:focus {
+      background: rgba(160, 160, 160, 0.55);
+    }
   }
-  box-shadow: 2px 2px 10px 4px rgba(220, 220, 220, 0.8);
-  border: 1px solid rgba(160, 160, 160, 0.15);
-  min-height: 600px;
+
 
   .sidebar {
     line-height: 1.55em;
+
+    .rhymethreshold {
+      font-weight: 700;
+      padding: 8px 0 2px 0;
+      width: 70%;
+      border-bottom: 1px solid rgba(190, 190, 190, 0.4);
+    }
   }
 }
 
@@ -164,9 +186,17 @@ html, body {
   height: 100px; /* .push must be the same height as .footer */
 }
 
-.footer {
+.footer p {
+  margin-top: 5px;
+  font-weight: 100;
+  font-size: 14px;
+  color: rgba(100,100,100, 0.7);
+}
+
+.blackbar {
    background: url("/public/img/debut_dark.png");
    background-color: #333;
    margin: 0;
+   margin-top: 30px;
    height: 25px;
 }
