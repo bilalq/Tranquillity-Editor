@@ -1,8 +1,8 @@
 <div class="row">
+  <img src="public/img/tranquillity.png" id="logo" />
+</div>
+<div class="row">
   <div class="one columns">
-    <div class="quillImg">
-      <img src="public/img/quill.png"/>
-    </div>
   </div>
   <div class="eleven columns">
 
@@ -15,11 +15,11 @@
     </div>
         
   <div class="row">
-    <div class="one columns syllable_counts">
+    <div class="one columns syllable_counts linked">
     </div>
     <div class="seven columns">
       <div class="cushion">
-        <textarea class="poetry-text" placeholder="Your poem goes here,                                                                                                                                                                                                       
+        <textarea class="poetry-text linked" placeholder="Your poem goes here,                                                                                                                                                                                                       
           no more need you fear."></textarea>
       </div>
     </div>
