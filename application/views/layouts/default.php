@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Grid System & Reset -->
-    <link rel="stylesheet" href="public/css/responsive.css" media="all">
+    <link rel="stylesheet" href="public/css/foundation.css" media="all">
 
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
