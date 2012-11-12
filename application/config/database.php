@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1';
-$db['default']['username'] = 'tranquill';
-$db['default']['password'] = 'temp';
-$db['default']['database'] = 'quill';
+$db['default']['hostname'] = 'poems.villustrator.com';
+$db['default']['username'] = 'quill';
+$db['default']['password'] = 'tranquill';
+$db['default']['database'] = 'tranquillpoem';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

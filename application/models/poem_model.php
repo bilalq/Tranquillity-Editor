@@ -14,12 +14,12 @@ class Poem_model extends CI_Model {
   function get_poem($poem_id){
     return $this->db->select('*')
       ->from('poem')
-      ->where('`id` =', '1', false)
+      ->where('`id` =', $poem_id, false)
       ->get()
       ->result();
   }
 
-  function get_poems($poem_id){
+  function get_poems(){
     return $this->db->get('poem')->result();;
   }
 

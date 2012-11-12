@@ -9,12 +9,13 @@ class Poem extends MY_Controller {
   }
 
   public function index($poem_id) {
-    $response = $this->Poem_model->get_poem($poem_id);    
+    $response = $this->Poem_model->get_poem($poem_id);
     var_dump($response);
   }
 
   public function list_all() {
-    $response = $this->Poem_model->get_poems($poem_id);
+    $response = $this->Poem_model->get_poems();
+    var_dump($response);
   }
 
   public function create() {

@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = "home";
+$route['poem/(:num)'] = 'poem/index/$1';
 $route['404_override'] = '';
 
 
