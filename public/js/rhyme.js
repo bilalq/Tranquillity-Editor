@@ -8,7 +8,7 @@ jQuery.extend(jQuery.expr[':'], {
 /* Constants */
 var delimiters = new RegExp("[ ,.]");
 var modifiers = [ 9, 13, 16, 17, 18 ];
-var minimum_score = 254;
+var minimum_score = 260;
 
 /* Globals */
 var rhymes_cache = [];
@@ -28,7 +28,7 @@ function words_from_line(line)
   return output;
 }
 
-function getRhymes(word, callback, callback_arg1) {
+function getRhymes(word, callback, line_values) {
   if (word === undefined || word.length < 1) {
     return;
   }
@@ -62,7 +62,7 @@ function getRhymes(word, callback, callback_arg1) {
         rhymes.push(response[i].word); /* word, syllables, score, freq flags */
       }
       callback = callback || function(rhymewords){console.log(rhymewords);};
-      callback(rhymes, callback_arg1);
+      callback(rhymes, line_values);
     }
   });
 }
