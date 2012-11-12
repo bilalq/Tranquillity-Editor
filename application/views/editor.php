@@ -38,5 +38,3 @@
     </div>
   </div>
 </div>
-<div class="blackbar">
-</div>
