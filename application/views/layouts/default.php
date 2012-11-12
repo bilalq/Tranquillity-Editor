@@ -31,6 +31,7 @@
     <![endif]-->
   </head>
   <body>
+
     <!-- <div class="section group">
       <div class="col span_1_of_12"></div>
       <div class="col span_11_of_12">
@@ -38,7 +39,6 @@
       </div>
     </div> -->
     <div class="topBar"></div>
-    <div class="bottomBar"></div>
     <div class="wrapper">
       <div class="row">
         <div class="eight columns">
@@ -47,13 +47,17 @@
         <div class="four columns">
             <div id="nav">
                 <ul>
-                    <li><a href="/about">About</a></li>
+                    <li><a href="/about">About </a></li> 
+                    <li> | </li>
+                    <li><a href="https://github.com/bilalq/Tranquillity-Editor">Source</a></li>
                 </ul>
             </div>
         </div>
       </div>
         <?= $template['body'] ?>
+      <!--<div class="blackbar"> </div>-->
     </div>
+
 
     <!-- Source JS files -->
     <script src="public/js/jquery-1.7.2.min.js"></script>

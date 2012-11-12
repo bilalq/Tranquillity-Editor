@@ -55,6 +55,7 @@ textarea.poetry-text {
   font-size: 18px;
   line-height: 1.5em;
   margin-bottom: 15px;
+  color: rgba(50, 50, 50, 0.8);
 }
 
 .syllable_counts {
@@ -112,6 +113,14 @@ div.topBar {
     list-style-type: none;
 
     li {
+      color: rgba(90, 90, 90, 0.8);
+      a {
+        color: rgba(90, 90, 90, 0.8);
+      }
+      a:hover {
+        color: rgba(60, 60, 60, 1.0);
+        text-decoration: underline;
+      }
       float: left;
       margin-right: 10px;
     }
@@ -181,7 +190,7 @@ html, body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -25px; /* the bottom margin is the negative value of the footer's height */
+  /*margin: 0 auto 30px; [> the bottom margin is the negative value of the footer's height <]*/
 }
 
 .push {
@@ -189,7 +198,7 @@ html, body {
 }
 
 .footer p {
-  margin-top: 5px;
+  margin-top: 50px;
   font-weight: 100;
   font-size: 14px;
   color: rgba(100,100,100, 0.7);
@@ -199,8 +208,10 @@ html, body {
    background: url("/public/img/debut_dark.png");
    background-color: #333;
    margin: 0;
-   margin-top: 30px;
+   margin-top: 50px;
    height: 25px;
+   /*position: absolute;*/
+   /*bottom: 0;*/
 }
 
 .about {
