@@ -221,3 +221,13 @@ html, body {
     color: rgba(100,100,100, 0.8);
   }
 }
+
+.about-poem {
+  a {
+    color: inherit;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
