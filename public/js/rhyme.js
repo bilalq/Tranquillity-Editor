@@ -33,7 +33,7 @@ function getRhymes(word, callback, line_values) {
     return;
   }
   //console.log("CALLING RHYMEBRAIN");
-  var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&maxResults=50&word=";
+  var rhymeURL = "http://rhymebrain.com/talk?function=getRhymes&word=";
 
   $.ajax({
     type: 'GET',
