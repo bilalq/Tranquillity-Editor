@@ -142,7 +142,8 @@ function pleaseWork(crap) {
 		var problemWords = {
 			"simile":		3,
 			"forever":		3,
-			"shoreline":	2
+			"shoreline":		2,
+			"anyone":		3
 		};
 		
 		// Return if we've hit one of those...
