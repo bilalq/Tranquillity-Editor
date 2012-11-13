@@ -143,7 +143,8 @@ function pleaseWork(crap) {
 			"simile":		3,
 			"forever":		3,
 			"shoreline":		2,
-			"anyone":		3
+			"anyone":		3,
+			"watch":		1
 		};
 		
 		// Return if we've hit one of those...
