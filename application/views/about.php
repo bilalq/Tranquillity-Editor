@@ -15,17 +15,19 @@
 
 		<h1>Features</h1>
 
-		<p>Its features include the below:<br />
-		Rhyme helper, Syllable count.<br />
+		<p>Its features include those below:<br />
+		Rhyme helper, Syllable count;<br />
 		Let your inner Creative grow:<br />
 		Your thoughts, the fount.</p>
 
-		<h1>Technology at Work</h1>
+        <h1>Technology at Work</h1>
 
-		<p>Foundation for a responsive interface,<br />
-		Code Igniter to keep order in haste,<br />
-		RhymeBrain to turn out rhyming words;<br />
-		Proud tools, these, of tech nerds.</p>
+        <p class="about-poem">
+          <a href="http://http://foundation.zurb.com/">Foundation</a> for a responsive interface,<br />
+<a href="http://http://codeigniter.com/">Code Igniter</a> to keep order in haste,<br />
+          <a href="http://rhymebrain.com">RhymeBrain</a> to turn out rhyming words;<br />
+          Proud tools, these, of tech nerds.
+        </p>
 
       </div>
     </div>
