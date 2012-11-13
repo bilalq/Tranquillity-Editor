@@ -13,7 +13,7 @@ function pleaseWork(crap) {
 		
 		fullStopTags.forEach(function(tag) {
 			text = text.replace("</" + tag + ">",".");
-		})
+		});
 		
 		text = text
 			.replace(/<[^>]+>/g, "")				// Strip tags
@@ -116,7 +116,9 @@ function pleaseWork(crap) {
 			// We don't count proper nouns or capitalised words if the countProperNouns attribute is set.
 			// Defaults to true.
 			if (!word.match(/^[A-Z]/) || countProperNouns) {
-				if (self.syllableCount(word) > 2) longWordCount ++;
+				if (self.syllableCount(word) > 2) {
+          longWordCount ++;
+        }
 			}
 		});
 		
@@ -140,15 +142,18 @@ function pleaseWork(crap) {
 		// Specific common exceptions that don't follow the rule set below are handled individually
 		// Array of problem words (with word as key, syllable count as value)
 		var problemWords = {
-			"simile":		3,
-			"forever":		3,
-			"shoreline":		2,
-			"anyone":		3,
-			"watch":		1
+			"simile":     3,
+			"forever":    3,
+			"shoreline":  2,
+			"anyone":     3,
+			"watch":      1,
+      "false":      1
 		};
 		
 		// Return if we've hit one of those...
-		if (problemWords[word]) return problemWords[word];
+		if (problemWords[word]) {
+      return problemWords[word];
+    }
 		
 		// These syllables would be counted as two but should be one
 		var subSyllables = [
@@ -213,7 +218,7 @@ function pleaseWork(crap) {
 		wordPartCount = word
 			.split(/[^aeiouy]+/ig)
 			.filter(function(wordPart) {
-				return !!wordPart.replace(/\s+/ig,"").length
+				return !!wordPart.replace(/\s+/ig,"").length;
 			})
 			.length;
 		
@@ -222,11 +227,15 @@ function pleaseWork(crap) {
 		
 		// Some syllables do not follow normal rules - check for them
 		subSyllables.forEach(function(syllable) {
-			if (word.match(syllable)) syllableCount --;
+			if (word.match(syllable)) {
+        syllableCount --;
+      }
 		});
 		
 		addSyllables.forEach(function(syllable) {
-			if (word.match(syllable)) syllableCount ++;
+			if (word.match(syllable)) {
+        syllableCount ++;
+      }
 		});
 		
 		return syllableCount || 1;
