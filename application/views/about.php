@@ -23,8 +23,8 @@
         <h1>Technology at Work</h1>
 
         <p class="about-poem">
-          <a href="http://http://foundation.zurb.com/">Foundation</a> for a responsive interface,<br />
-<a href="http://http://codeigniter.com/">Code Igniter</a> to keep order in haste,<br />
+          <a href="http://foundation.zurb.com/">Foundation</a> for a responsive interface,<br />
+<a href="http://codeigniter.com/">Code Igniter</a> to keep order in haste,<br />
           <a href="http://rhymebrain.com">RhymeBrain</a> to turn out rhyming words;<br />
           Proud tools, these, of tech nerds.
         </p>
