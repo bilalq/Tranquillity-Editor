@@ -1,0 +1,10 @@
+.modal{:id => "role-options-#{user.id}", :style => "display: none;"}
+  = form_for user, :url => user_path(user), :html => {:method => :put, :class => 'form-horizontal' } do |f|
+    .modal-header
+      %a.close{"data-dismiss" => "modal"} ×
+      %h3 Change Role
+    .modal-body
+      = collection_select :user, :role_ids, Role.all, :id, :name
+    .modal-footer
+      = f.submit "Change Role", :class => "btn"
+      %a.btn{"data-dismiss" => "modal", :href => "#"} Close

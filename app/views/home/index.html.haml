@@ -1,2 +1,4 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+%h3 Home
+- @users.each do |user|
+  %p
+    User: #{link_to user.name, user}
