@@ -62,5 +62,7 @@ module Tranquillity
     config.assets.version = '1.0'
 
     config.logger = Logger.new(STDOUT)
+
+    config.assets.initialize_on_precompile = false
   end
 end
