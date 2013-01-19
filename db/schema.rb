@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119032156) do
+ActiveRecord::Schema.define(:version => 20130119040114) do
+
+  create_table "poems", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "views",        :default => 0
+    t.integer  "likes",        :default => 0
+    t.integer  "user_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "rhyme_scheme"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"

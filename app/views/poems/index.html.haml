@@ -1,0 +1,8 @@
+-@poems.each do |poem|
+  =link_to poem_path(poem), :class => 'poem_link' do
+    .poem_block
+      %h3=poem.title.blank? ? "Untitled" : poem.title
+      %h4=poem.user.name if poem.user
+      %p=poem.body
+      %span.date=poem.created_at.strftime('%-m/%-d/%Y %l:%M %p')
+=will_paginate @poems

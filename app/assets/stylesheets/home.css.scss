@@ -1,3 +1,95 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+header {
+  background:#444;
+  padding:5px;
+  a {
+    color:#ccc;
+    text-decoration:none;
+    &:hover {
+      color:#fff;
+    }
+  }
+}
+#poem_title {
+  font-size:48px;
+  border:none;
+  background:rgba(0,0,0,0);
+  width:800px;
+  &:focus {
+    background:rgba(0,0,0,.05);
+    outline:none;
+  }
+  &:hover {
+    background:rgba(0,0,0,.05);
+  }
+}
+textarea {
+  height:500px;
+  resize:none;
+  border:none;
+  float:left;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+  
+  &#poem_body {
+    width:500px;
+    margin-right:10px;
+    background:rgba(0,0,0,.02);
+    &:focus {
+      background:rgba(0,0,0,.05);
+      outline:none;
+    }
+    &:hover {
+      background:rgba(0,0,0,.05);
+    }
+  }
+  &#counts {
+    width:40px;
+    text-align:right;
+    margin-left:-50px;
+    color:#999;
+    background:rgba(0,0,0,0);
+    overflow:hidden;
+  }
+  &#rhymes {
+    width:290px;
+    background:rgba(0,0,0,.02);
+    height:340px;
+    margin:10px 0;
+  }
+}
+
+#poem_rhyme_scheme {
+  float: left;
+  width: 290px;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+  border:none;
+  background:rgba(0,0,0,.02);
+  margin:10px 0;
+  height:40px;
+  &:focus {
+    background:rgba(0,0,0,.05);
+    outline:none;
+  }
+  &:hover {
+    background:rgba(0,0,0,.05);
+  }
+}
+
+.save_poem {
+  width:290px;
+  height:40px;
+  border:none;
+  background:rgba(0,0,0,.1);
+  &:hover {
+    background:rgba(0,0,0,.2);
+  }
+  &:active {
+    background:rgba(0,0,0,.4);
+  }
+}

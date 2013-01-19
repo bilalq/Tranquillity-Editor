@@ -1,0 +1,20 @@
+form#edit_user, form#new_user {
+  input {
+    border:none;
+    background:rgba(0,0,0,.02);
+    margin:10px 0;
+    &:hover, &:focus {
+      background:rgba(0,0,0,.05);
+      outline:none;
+    }
+    &[type="submit"] {
+      background:rgba(0,0,0,.1);
+      &:hover {
+        background:rgba(0,0,0,.2);
+      }
+      &:active {
+        background:rgba(0,0,0,.4);
+      }
+    }
+  }
+}

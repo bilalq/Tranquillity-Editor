@@ -1,3 +1,4 @@
+.edit_poem=link_to 'View Poem', poem_path(@poem)
 =form_for @poem do |f|
   %p=f.text_field :title, :placeholder => "Title"
   =text_area_tag :counts, nil, :disabled => true

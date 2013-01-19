@@ -56,13 +56,13 @@ audio:not([controls]) {
    ========================================================================== */
 
 /**
- * 1. Set default font family to sans-serif.
+ * 1. Set default font family to serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
 
 html {
-    font-family: sans-serif; /* 1 */
+    font-family: 'Brawler', serif;; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
     -ms-text-size-adjust: 100%; /* 2 */
 }
@@ -73,6 +73,7 @@ html {
 
 body {
     margin: 0;
+    background: #faf9f2;
 }
 
 /* ==========================================================================
@@ -82,6 +83,11 @@ body {
 /**
  * Address `outline` inconsistency between Chrome and other browsers.
  */
+
+a {
+  color: #999;
+  text-decoration: none;
+}
 
 a:focus {
     outline: thin dotted;
@@ -94,6 +100,7 @@ a:focus {
 a:active,
 a:hover {
     outline: 0;
+    color: black;
 }
 
 /* ==========================================================================
@@ -106,7 +113,9 @@ a:hover {
  */
 
 h1 {
-    font-size: 2em;
+    font-size: 48px;
+    font-weight: normal;
+    margin:17px 0;
 }
 
 /**
@@ -268,8 +277,9 @@ input,
 select,
 textarea {
     font-family: inherit; /* 1 */
-    font-size: 100%; /* 2 */
+    font-size: 20px; /* 2 */
     margin: 0; /* 3 */
+    line-height: 1.5;
 }
 
 /**

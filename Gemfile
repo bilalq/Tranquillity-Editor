@@ -12,8 +12,8 @@ gem "haml", ">= 3.1.7"
 gem "haml-rails", ">= 0.3.5", :group => :development
 gem "hpricot", ">= 0.8.6", :group => :development
 gem "ruby_parser", ">= 3.1.1", :group => :development
-gem "minitest-spec-rails", ">= 3.0.7", :group => :test
-gem "minitest-wscolor", ">= 0.0.3", :group => :test
+gem "minitest-spec-rails", :group => :test
+gem "minitest-wscolor", :group => :test
 gem "devise", ">= 2.1.2"
 gem "cancan", ">= 1.6.8"
 gem "rolify", ">= 3.2.0"
@@ -21,3 +21,4 @@ gem "quiet_assets", ">= 1.0.1", :group => :development
 gem "figaro", ">= 0.5.0"
 gem "better_errors", ">= 0.3.2", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
+gem 'will_paginate'

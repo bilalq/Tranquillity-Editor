@@ -1,19 +1,24 @@
 !!!
 %html
   %head
+    %link{href: 'http://fonts.googleapis.com/css?family=Brawler', rel: 'stylesheet', type: 'text/css'}
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
       %title= content_for?(:title) ? yield(:title) : "Tranquillity"
       %meta{:content => content_for?(:description) ? yield(:description) : "Tranquillity", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
+        = stylesheet_link_tag "http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css"
         = javascript_include_tag "application"
+        = javascript_include_tag "http://code.jquery.com/ui/1.10.0/jquery-ui.js"
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
     #container.container
       %header
-        = render 'layouts/navigation'
-        = render 'layouts/messages'
+        .inner
+          = render 'layouts/navigation'
       #main{:role => "main"}
+        = render 'layouts/messages'
         = yield
       %footer
+        .copyright Copyright © 2012 Bilal Quadri, Josh Greenman, Gene Demo, Grant Kot, Sharon Li
     / ! end of #container

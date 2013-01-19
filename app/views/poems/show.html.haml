@@ -1,0 +1,6 @@
+.poem_display
+  -if user_signed_in? && current_user == @poem.user
+    .edit_poem=link_to 'Edit Poem', edit_poem_path(@poem)
+  %h1=@poem.title
+  =text_area_tag :counts, nil, :disabled => true
+  =text_area_tag 'poem_body', @poem.body, :disabled => true

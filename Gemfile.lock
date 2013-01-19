@@ -141,6 +141,7 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.1)
       rack (>= 1.0)
+    will_paginate (3.0.4)
 
 PLATFORMS
   ruby
@@ -156,8 +157,8 @@ DEPENDENCIES
   haml-rails (>= 0.3.5)
   hpricot (>= 0.8.6)
   jquery-rails
-  minitest-spec-rails (>= 3.0.7)
-  minitest-wscolor (>= 0.0.3)
+  minitest-spec-rails
+  minitest-wscolor
   quiet_assets (>= 1.0.1)
   rails (= 3.2.11)
   rolify (>= 3.2.0)
@@ -166,3 +167,4 @@ DEPENDENCIES
   sqlite3
   uglifier (>= 1.0.3)
   unicorn (>= 4.3.1)
+  will_paginate
