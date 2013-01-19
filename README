@@ -1,4 +1,19 @@
-RECIPES
+Tranquillity
+========================
+
+This application was generated with the rails_apps_composer gem:
+https://github.com/RailsApps/rails_apps_composer
+provided by the RailsApps Project:
+http://railsapps.github.com/
+
+________________________
+
+Recipes:
 ["controllers", "core", "email", "extras", "frontend", "gems", "git", "init", "models", "prelaunch", "railsapps", "readme", "routes", "saas", "setup", "testing", "views"]
-PREFERENCES
-{:git=>true, :railsapps=>"none", :dev_webserver=>"webrick", :prod_webserver=>"unicorn", :database=>"sqlite", :templates=>"haml", :unit_test=>"minitest", :integration=>"none", :fixtures=>"none", :frontend=>"normalize", :email=>"none", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :form_builder=>"none", :starter_app=>"admin_app"}
+
+Preferences:
+{:git=>true, :railsapps=>"none", :dev_webserver=>"webrick", :prod_webserver=>"unicorn", :database=>"sqlite", :templates=>"haml", :unit_test=>"minitest", :integration=>"none", :fixtures=>"none", :frontend=>"normalize", :email=>"none", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :form_builder=>"none", :starter_app=>"admin_app", :quiet_assets=>true, :local_env_file=>true, :better_errors=>true, :rvmrc=>true}
+
+________________________
+
+License
