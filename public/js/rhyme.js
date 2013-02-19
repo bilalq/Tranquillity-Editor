@@ -101,7 +101,7 @@ function getSyllableCount(word) {
   };
 
   // Return if we've hit one of those...
-  if (problemWords[word]) {
+  if (problemWords.hasOwnProperty(word)) {
     return problemWords[word];
   }
 
